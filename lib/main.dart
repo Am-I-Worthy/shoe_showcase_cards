@@ -28,6 +28,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   bool isHovered = false;
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           child: Container(
-            height: 400.0,
+            height: 420.0,
             width: 320.0,
             decoration: BoxDecoration(
               color: const Color(0xFF242324),
@@ -56,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Positioned(
                   left: -40.0,
-                  top: 120.0,
+                  top: 150.0,
                   child: Text(
                     'Nike',
                     style: GoogleFonts.montserrat(
@@ -69,17 +74,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 AnimatedPositioned(
-                  duration: const Duration(milliseconds: 375),
+                  duration: const Duration(milliseconds: 575),
                   curve: Curves.easeOut,
                   top: isHovered ? -240.0 : -80.0,
                   right: isHovered ? -100.0 : -80.0,
                   child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 375),
+                    duration: const Duration(milliseconds: 575),
                     curve: Curves.easeOut,
                     height: isHovered ? 450.0 : 280.0,
                     width: isHovered ? 450.0 : 280.0,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF0063d7),
+                      color: const Color(0xFF0091de),
                       borderRadius: BorderRadius.circular(500),
                     ),
                   ),
@@ -91,17 +96,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       ? const Alignment(0.0, -0.8)
                       : const Alignment(0.0, 0.0),
                   child: SizedBox(
-                    height: 170,
+                    height: 220,
                     width: 320.0,
-                    child: Image.asset('assets/shoe.png'),
+                    child: Image.asset(
+                      'assets/shoe1.png',
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
                 AnimatedPositioned(
-                  duration: const Duration(milliseconds: 375),
+                  duration: const Duration(milliseconds: 775),
                   curve: Curves.easeOut,
-                  bottom: isHovered ? 0.0 : -110.0,
+                  bottom: isHovered ? 0.0 : -100.0,
                   child: SizedBox(
-                    height: 230.0,
+                    height: 250.0,
                     width: 320.0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,8 +128,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         AnimatedOpacity(
                           opacity: isHovered ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 375),
-                          curve: Curves.easeOut,
+                          duration: isHovered
+                              ? const Duration(milliseconds: 575)
+                              : const Duration(milliseconds: 375),
+                          curve:
+                              isHovered ? Curves.easeInOutBack : Curves.easeOut,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -153,8 +164,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         AnimatedOpacity(
                           opacity: isHovered ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 375),
-                          curve: Curves.easeOut,
+                          duration: isHovered
+                              ? const Duration(milliseconds: 975)
+                              : const Duration(milliseconds: 375),
+                          curve:
+                              isHovered ? Curves.easeInOutBack : Curves.easeOut,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -193,30 +207,42 @@ class _MyHomePageState extends State<MyHomePage> {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        AnimatedOpacity(
-                          opacity: isHovered ? 1.0 : 0.0,
-                          duration: const Duration(milliseconds: 1075),
-                          curve: Curves.easeOut,
-                          child: TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              primary: Colors.black87,
-                              padding: const EdgeInsets.all(20.0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
+                      ],
+                    ),
+                  ),
+                ),
+                AnimatedPositioned(
+                  duration: isHovered
+                      ? const Duration(milliseconds: 800)
+                      : const Duration(milliseconds: 500),
+                  bottom: isHovered ? 20.0 : -100.0,
+                  curve: isHovered ? Curves.easeInCubic : Curves.easeOut,
+                  child: AnimatedOpacity(
+                    opacity: isHovered ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 1075),
+                    curve: Curves.easeOut,
+                    child: SizedBox(
+                      width: 320.0,
+                      child: Center(
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            primary: Colors.black87,
+                            padding: const EdgeInsets.all(20.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
                             ),
-                            onPressed: () {},
-                            child: Text(
-                              'Buy Now',
-                              style: GoogleFonts.montserrat(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600,
-                              ),
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'Buy Now',
+                            style: GoogleFonts.montserrat(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
@@ -260,7 +286,7 @@ class _SizeButtonState extends State<SizeButton> {
           height: 30.0,
           width: 30.0,
           decoration: BoxDecoration(
-            color: isHovered ? const Color(0xFF0063d7) : Colors.white,
+            color: isHovered ? const Color(0xFF0091de) : Colors.white,
             borderRadius: BorderRadius.circular(5.0),
           ),
           child: Center(
